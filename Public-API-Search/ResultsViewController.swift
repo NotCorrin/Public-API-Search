@@ -36,8 +36,8 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad();
         publicApisList = [
-            publicApis(title: "Liam", details: [1, 2, 3].compactMap({ return "Cell \($0)" })),
-            publicApis(title: "Christian", details: [1, 2, 3].compactMap({ return "Cell \($0)" }))
+            publicApis(title: "Title: Liam", details: ["Auth: ", "Category: ", "Link: "].compactMap({ return "\($0)" })),
+            publicApis(title: "Christian", details: ["Auth: ", "Category: ", "Link: "].compactMap({ return "\($0)" }))
         ]
         view.addSubview(tableView);
         tableView.delegate = self;
@@ -62,10 +62,13 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView( _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath);
         if indexPath.row == 0 {
-            cell.textLabel?.text = publicApisList[indexPath.section].title
+            cell.textLabel?.text = publicApisList[indexPath.section].title;
+            cell.backgroundColor = UIColor(red: 0.30, green: 0.34, blue: 0.42, alpha: 1.00);
+            cell.textLabel?.textColor = UIColor(white: 1, alpha: 1);
         } else {
             cell.textLabel?.text = publicApisList[indexPath.section].details[indexPath.row - 1]
-            
+            cell.backgroundColor = UIColor(white: 1, alpha: 1);
+            cell.textLabel?.textColor = UIColor(red: 0.30, green: 0.34, blue: 0.42, alpha: 1.00)
         }
         return cell;
     }
