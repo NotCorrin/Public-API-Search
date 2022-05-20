@@ -7,45 +7,67 @@
 
 import UIKit
 
-struct publicApis {
-    var title: String
-    var auth: String
-    var category: String
-    var link: String
+class publicApis {
+    let title: String
+    let details: [String]
+    var isOpened: Bool = false
+    
+    init(title: String,
+         details: [String],
+         isOpened: Bool = false) {
+        self.title = title;
+        self.details = details;
+        self.isOpened = isOpened;
+    }
 }
 
 class ResultsViewController: UIViewController {
-    
-    var publicApiList: [publicApis] = [
-        publicApis(title: "Liam", auth: "apiKey", category: "UTS", link: "www.liam.com"),
-        publicApis(title: "Christian", auth: "OAuth", category: "UNSW", link: "www.christian.com")
-    ]
 
     @IBOutlet weak var SearchResultsTableView: UITableView!
     
+    private var publicApisList = [publicApis]()
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        super.viewDidLoad();
+        publicApisList = [
+            publicApis(title: "Liam", details: [1, 2, 3].compactMap({ return "Cell \($0)" })),
+            publicApis(title: "Christian", details: [1, 2, 3].compactMap({ return "Cell \($0)" }))
+        ]
+        SearchResultsTableView.backgroundView = UIImageView(image: UIImage(named: "results.png"))
     }
 }
 
 extension ResultsViewController: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultsCell", for: indexPath);
-        let result = publicApiList[indexPath.row];
-        
-        cell.textLabel?.text = result.title;
-        cell.textLabel?.text = result.auth;
-        cell.textLabel?.text = result.category;
-        cell.textLabel?.text = result.link;
-        
-        return cell;
-        
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return publicApisList.count;
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Show top 10 players and their scores
-        return publicApiList.count;
+    func tableView( _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let section = publicApisList[section]
+        if section.isOpened {
+            return section.details.count + 1;
+        } else {
+            return 1;
+        }
     }
+    
+    func tableView( _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultCell", for: indexPath);
+            
+            cell.textLabel?.text = publicApisList[indexPath.section].title
+            
+            return cell;
+        }
+        return UITableViewCell();
+    }
+    
+    func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
+        tableView.deselectRow(at: indexPath, animated: true);
+        publicApisList[indexPath.section].isOpened = !publicApisList[indexPath.section].isOpened;
+        tableView.reloadSections([indexPath.section], with: .none);
+    }
+    
 }
