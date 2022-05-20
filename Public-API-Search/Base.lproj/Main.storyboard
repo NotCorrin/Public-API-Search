@@ -38,7 +38,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="SSb-UD-Adb">
-                                <rect key="frame" x="50" y="248.66666666666663" width="314" height="230.33333333333337"/>
+                                <rect key="frame" x="50" y="248.66666666666666" width="314" height="102.33333333333334"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qoF-ma-VM7">
                                         <rect key="frame" x="0.0" y="0.0" width="314" height="31"/>
@@ -62,10 +62,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VAp-CQ-s21">
-                                        <rect key="frame" x="0.0" y="71.333333333333343" width="314" height="159"/>
+                                        <rect key="frame" x="0.0" y="71.333333333333343" width="314" height="31"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OiA-Ic-feC">
-                                                <rect key="frame" x="0.0" y="0.0" width="314" height="159"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="314" height="31"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="meU-0v-5pw">
                                                         <rect key="frame" x="0.0" y="0.0" width="314" height="31"/>
@@ -79,7 +79,7 @@
                                                             <action selector="categoriesButtonOnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gN6-Ly-Dq8"/>
                                                         </connections>
                                                     </button>
-                                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DAz-8k-Iod">
+                                                    <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DAz-8k-Iod">
                                                         <rect key="frame" x="0.0" y="31" width="314" height="128"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="128" id="Yi6-3d-Clr"/>
