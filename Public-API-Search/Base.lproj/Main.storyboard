@@ -69,8 +69,15 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="meU-0v-5pw">
                                                         <rect key="frame" x="0.0" y="0.0" width="314" height="31"/>
+                                                        <color key="backgroundColor" red="0.92941176889999999" green="0.93725490570000003" blue="0.9529411793" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="tintColor" red="0.1843137443" green="0.20392158630000001" blue="0.2470588088" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Categories">
+                                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="categoriesButtonOnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gN6-Ly-Dq8"/>
+                                                        </connections>
                                                     </button>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DAz-8k-Iod">
                                                         <rect key="frame" x="0.0" y="31" width="314" height="128"/>
@@ -78,10 +85,16 @@
                                                             <constraint firstAttribute="height" constant="128" id="Yi6-3d-Clr"/>
                                                             <constraint firstAttribute="width" constant="314" id="iyP-bT-mkC"/>
                                                         </constraints>
-                                                        <viewLayoutGuide key="contentLayoutGuide" id="Mti-Ql-eb4"/>
-                                                        <viewLayoutGuide key="frameLayoutGuide" id="WCW-jl-asO"/>
+                                                        <viewLayoutGuide key="contentLayoutGuide" id="yxy-g1-aGJ"/>
+                                                        <viewLayoutGuide key="frameLayoutGuide" id="JYI-2D-abr"/>
                                                     </scrollView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="DAz-8k-Iod" secondAttribute="trailing" id="3ao-jI-QZ8"/>
+                                                    <constraint firstItem="DAz-8k-Iod" firstAttribute="top" secondItem="meU-0v-5pw" secondAttribute="bottom" id="PBL-di-qWd"/>
+                                                    <constraint firstAttribute="bottom" secondItem="DAz-8k-Iod" secondAttribute="bottom" id="rJv-tZ-OXC"/>
+                                                    <constraint firstItem="DAz-8k-Iod" firstAttribute="leading" secondItem="OiA-Ic-feC" secondAttribute="leading" id="wUu-fk-uW3"/>
+                                                </constraints>
                                             </stackView>
                                         </subviews>
                                     </stackView>
@@ -108,6 +121,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="vaP-1k-3hc"/>
                     <connections>
+                        <outlet property="categoriesButton" destination="meU-0v-5pw" id="L1v-Ii-1ya"/>
                         <outlet property="categoriesScrollView" destination="DAz-8k-Iod" id="dPi-q8-boB"/>
                     </connections>
                 </viewController>
