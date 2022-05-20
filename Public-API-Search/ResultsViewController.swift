@@ -21,9 +21,15 @@ class publicApis {
     }
 }
 
-class ResultsViewController: UIViewController {
+class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var SearchResultsTableView: UITableView!
+    //@IBOutlet weak var SearchResultsTableView: UITableView!
+    
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        return tableView
+    }()
     
     private var publicApisList = [publicApis]()
     
@@ -33,11 +39,12 @@ class ResultsViewController: UIViewController {
             publicApis(title: "Liam", details: [1, 2, 3].compactMap({ return "Cell \($0)" })),
             publicApis(title: "Christian", details: [1, 2, 3].compactMap({ return "Cell \($0)" }))
         ]
-        SearchResultsTableView.backgroundView = UIImageView(image: UIImage(named: "results.png"))
+        view.addSubview(tableView);
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        tableView.frame = view.bounds;
+        tableView.backgroundView = UIImageView(image: UIImage(named: "results.png"))
     }
-}
-
-extension ResultsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return publicApisList.count;
@@ -53,21 +60,19 @@ extension ResultsViewController: UITableViewDataSource {
     }
     
     func tableView( _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath);
         if indexPath.row == 0 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultCell", for: indexPath);
-            
             cell.textLabel?.text = publicApisList[indexPath.section].title
+        } else {
+            cell.textLabel?.text = publicApisList[indexPath.section].details[indexPath.row - 1]
             
-            return cell;
         }
-        return UITableViewCell();
+        return cell;
     }
     
-    func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
+    func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true);
         publicApisList[indexPath.section].isOpened = !publicApisList[indexPath.section].isOpened;
         tableView.reloadSections([indexPath.section], with: .none);
     }
-    
 }
