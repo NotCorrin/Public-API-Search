@@ -23,6 +23,8 @@ class publicApis {
 
 class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
+    var entries: [Entries] = Array()
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -34,10 +36,24 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        
+        print(entries)
+        
         publicApisList = [
-            publicApis(title: "Title: Liam", details: ["Auth:", "Category:", "Link:"].compactMap({ return "\($0)" })),
-            publicApis(title: "Christian", details: ["Auth: ", "Category: ", "Link: "].compactMap({ return "\($0)" }))
+//            publicApis(title: "Title: Liam", details: ["Auth:", "Category:", "Link:"].compactMap({ return "\($0)" })),
+//            publicApis(title: "Christian", details: ["Auth: ", "Category: ", "Link: "].compactMap({ return "\($0)" }))
         ]
+        
+        for entry in entries {
+            let title = entry.API
+            let auth = entry.Auth.isEmpty ? "Auth: None" : "Auth: \(entry.Auth)"
+            let category = "Category: \(entry.Category)"
+            let link = "\(entry.Link)"
+            
+            let details = [category, auth, link]
+            
+            publicApisList.append(publicApis(title: title, details: details))
+        }
                 
         tableView.delegate = self;
         tableView.dataSource = self;

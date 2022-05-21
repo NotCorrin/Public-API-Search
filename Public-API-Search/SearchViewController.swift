@@ -77,7 +77,7 @@ class SearchViewController: UIViewController {
     func loadResultsViewController() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as! ResultsViewController
         
-        print(entries)
+        vc.entries = self.entries
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
