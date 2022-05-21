@@ -51,23 +51,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             publicApisList.append(publicApis(title: title, details: details))
         }
-        
-        configureSearchBarUI()
         configureTableViewUI()
-    }
-    
-    func configureSearchBarUI() {
-        view.backgroundColor = .white
-        searchBar.sizeToFit()
-        searchBar.delegate = self
-        navigationController?.navigationBar.barTintColor = UIColor(red: 55/255, green: 120/255, blue: 250/255, alpha: 1)
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.setBackgroundImage(UIImage(named: "results.png"), for: .default)
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.isTranslucent = true
-        navigationItem.title = "Results"
-        showSearchBarButton(shouldShow: true)
     }
     
     func configureTableViewUI(){
@@ -76,43 +60,6 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.frame = view.bounds;
         tableView.backgroundView = UIImageView(image: UIImage(named: "results.png"));
         view.addSubview(tableView);
-    }
-    
-    @objc func handleShowSearchBar() {
-        searchBar.becomeFirstResponder()
-        search(shouldShow: true)
-    }
-    
-    func showSearchBarButton(shouldShow: Bool) {
-        if shouldShow {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
-                                                                target: self,
-                                                                action: #selector(handleShowSearchBar))
-        } else {
-            navigationItem.rightBarButtonItem = nil
-        }
-    }
-    
-    func search(shouldShow: Bool) {
-        showSearchBarButton(shouldShow: !shouldShow)
-        searchBar.showsCancelButton = shouldShow
-        navigationItem.titleView = shouldShow ? searchBar : nil
-    }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        print("Search bar editing did begin..")
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        print("Search bar editing did end..")
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        search(shouldShow: false)
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("Search text is \(searchText)")
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
