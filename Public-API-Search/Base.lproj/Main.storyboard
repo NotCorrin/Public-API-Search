@@ -63,6 +63,9 @@
                                                     <color key="baseForegroundColor" red="0.1843137443" green="0.20392158630000001" blue="0.2470588088" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <color key="baseBackgroundColor" red="0.92941176889999999" green="0.93725490570000003" blue="0.9529411793" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="searchButtonOnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mjI-ML-H62"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -146,9 +149,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="vaP-1k-3hc"/>
                     <connections>
+                        <outlet property="authSwitch" destination="TDY-7n-n8x" id="yF5-At-9KS"/>
                         <outlet property="categoriesButton" destination="meU-0v-5pw" id="L1v-Ii-1ya"/>
                         <outlet property="categoriesScrollView" destination="DAz-8k-Iod" id="dPi-q8-boB"/>
                         <outlet property="randomButton" destination="tUF-v5-DTU" id="JLg-rz-bDw"/>
+                        <outlet property="searchTextField" destination="Wr3-a7-JeT" id="iHk-IC-Tq1"/>
                         <segue destination="ecp-VC-PsS" kind="show" identifier="toResults" id="Y2V-2V-Jmj"/>
                     </connections>
                 </viewController>

@@ -37,8 +37,6 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad();
         
-        print(entries)
-        
         publicApisList = [
 //            publicApis(title: "Title: Liam", details: ["Auth:", "Category:", "Link:"].compactMap({ return "\($0)" })),
 //            publicApis(title: "Christian", details: ["Auth: ", "Category: ", "Link: "].compactMap({ return "\($0)" }))

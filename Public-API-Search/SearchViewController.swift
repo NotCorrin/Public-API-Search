@@ -37,6 +37,8 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var categoriesScrollView: UIScrollView!
     @IBOutlet weak var categoriesButton: UIButton!
     @IBOutlet weak var randomButton: UIButton!
+    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var authSwitch: UISwitch!
     
     let buttonHeight = 35
     let buttonWidth = UIScreen.main.bounds.size.width - 100
@@ -119,6 +121,22 @@ class SearchViewController: UIViewController {
     @IBAction func randomButtonOnClick(_ sender: Any) {
         hasDataLoaded = false
         performFetch(query: "random", searchType: SearchType.entries)
+        waitForLoad()
+    }
+    
+    @IBAction func searchButtonOnClick(_ sender: Any) {
+        hasDataLoaded = false
+        
+        let titleParam = searchTextField.hasText ? "title=" + searchTextField.text! : ""
+        let categoryParam = categoriesButton.titleLabel!.text == "Categories" ? "" : "category=" + (categoriesButton.titleLabel?.text)!
+        let auth: String = authSwitch.isOn ? "a" : "null"
+        
+        let firstSep = titleParam.isEmpty ? "" : "&"
+        let secondSep = categoryParam.isEmpty ? "" : "&"
+        
+        let query = "entries?\(titleParam)\(firstSep)\(categoryParam)\(secondSep)auth=\(auth)"
+        
+        performFetch(query: query, searchType: SearchType.entries)
         waitForLoad()
     }
     
