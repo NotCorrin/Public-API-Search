@@ -50,6 +50,7 @@ class SearchViewController: UIViewController {
     var categories: [String] = Array()
     var entries: [Entries] = Array()
     
+    var hasCategoriesLoaded = false
     var hasDataLoaded = false
     
     override func viewDidLoad() {
@@ -91,19 +92,21 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func categoriesButtonOnClick(_ sender: Any) {
-        categoriesScrollView.backgroundColor = darkWhite
-        
-        for index in 0..<self.categories.count {
-            let frame1 = CGRect(x: 0, y: 0 + (index * buttonHeight), width: Int(buttonWidth), height: buttonHeight )
-            let button = UIButton(frame: frame1)
-            button.setTitle("\(categories[index])", for: .normal)
-            button.setTitleColor(darkestBlue, for: .normal)
-            button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        if (!hasCategoriesLoaded) {
+            categoriesScrollView.backgroundColor = darkWhite
             
-            self.categoriesScrollView.addSubview(button)
+            for index in 0..<self.categories.count {
+                let frame1 = CGRect(x: 0, y: 0 + (index * buttonHeight), width: Int(buttonWidth), height: buttonHeight )
+                let button = UIButton(frame: frame1)
+                button.setTitle("\(categories[index])", for: .normal)
+                button.setTitleColor(darkestBlue, for: .normal)
+                button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+                
+                self.categoriesScrollView.addSubview(button)
+            }
+            self.categoriesScrollView.contentSize.height = CGFloat(buttonHeight * categories.count)
+            hasCategoriesLoaded = true
         }
-        
-        self.categoriesScrollView.contentSize.height = CGFloat(buttonHeight * categories.count)
         toggleDropdown()
     }
     
@@ -128,11 +131,15 @@ class SearchViewController: UIViewController {
         hasDataLoaded = false
         
         let titleParam = searchTextField.hasText ? "title=" + searchTextField.text! : ""
-        let categoryParam = categoriesButton.titleLabel!.text == "Categories" ? "" : "category=" + (categoriesButton.titleLabel?.text)!
+        var categoryParam = categoriesButton.titleLabel!.text == "Categories" ? "" : "category=" + (categoriesButton.titleLabel?.text)!
         let auth: String = authSwitch.isOn ? "a" : "null"
         
         let firstSep = titleParam.isEmpty ? "" : "&"
         let secondSep = categoryParam.isEmpty ? "" : "&"
+        
+        if (categoryParam.contains(" ")) {
+            categoryParam = categoryParam.components(separatedBy: " ").first!
+        }
         
         let query = "entries?\(titleParam)\(firstSep)\(categoryParam)\(secondSep)auth=\(auth)"
         
