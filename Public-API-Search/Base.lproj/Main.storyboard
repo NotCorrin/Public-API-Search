@@ -128,16 +128,25 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Results..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MuZ-2f-lh3">
+                                <rect key="frame" x="50" y="144" width="314" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.92941176889999999" green="0.93725490570000003" blue="0.9529411793" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DkF-X6-2kw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="NND-gA-xkQ" firstAttribute="leading" secondItem="DkF-X6-2kw" secondAttribute="leading" constant="50" id="4YG-fU-Ve8"/>
+                            <constraint firstItem="Wr3-a7-JeT" firstAttribute="top" secondItem="MuZ-2f-lh3" secondAttribute="bottom" constant="20" id="4i0-HI-GDW"/>
                             <constraint firstItem="SSb-UD-Adb" firstAttribute="leading" secondItem="DkF-X6-2kw" secondAttribute="leading" constant="50" id="866-21-Vu7"/>
                             <constraint firstItem="DkF-X6-2kw" firstAttribute="trailing" secondItem="SSb-UD-Adb" secondAttribute="trailing" constant="50" id="8AS-3P-2Ga"/>
                             <constraint firstItem="I2B-hW-7MY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="FYf-qb-tHH"/>
+                            <constraint firstItem="DkF-X6-2kw" firstAttribute="trailing" secondItem="MuZ-2f-lh3" secondAttribute="trailing" constant="50" id="Fwu-if-HXO"/>
                             <constraint firstAttribute="bottom" secondItem="I2B-hW-7MY" secondAttribute="bottom" id="J26-54-4E7"/>
                             <constraint firstItem="DkF-X6-2kw" firstAttribute="trailing" secondItem="Wr3-a7-JeT" secondAttribute="trailing" constant="50" id="JDr-Wz-Q21"/>
+                            <constraint firstItem="MuZ-2f-lh3" firstAttribute="leading" secondItem="DkF-X6-2kw" secondAttribute="leading" constant="50" id="NvD-jb-Isy"/>
                             <constraint firstItem="I2B-hW-7MY" firstAttribute="trailing" secondItem="DkF-X6-2kw" secondAttribute="trailing" id="P11-Lc-r6f"/>
                             <constraint firstItem="Wr3-a7-JeT" firstAttribute="leading" secondItem="DkF-X6-2kw" secondAttribute="leading" constant="50" id="QGA-8C-6ve"/>
                             <constraint firstItem="DkF-X6-2kw" firstAttribute="trailing" secondItem="NND-gA-xkQ" secondAttribute="trailing" constant="50" id="SfL-Ov-jNM"/>
@@ -154,6 +163,7 @@
                         <outlet property="categoriesScrollView" destination="DAz-8k-Iod" id="dPi-q8-boB"/>
                         <outlet property="randomButton" destination="tUF-v5-DTU" id="JLg-rz-bDw"/>
                         <outlet property="searchTextField" destination="Wr3-a7-JeT" id="iHk-IC-Tq1"/>
+                        <outlet property="statusLabel" destination="MuZ-2f-lh3" id="2Ii-UG-rnw"/>
                         <segue destination="ecp-VC-PsS" kind="show" identifier="toResults" id="Y2V-2V-Jmj"/>
                     </connections>
                 </viewController>

@@ -39,12 +39,15 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var randomButton: UIButton!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var authSwitch: UISwitch!
+    @IBOutlet weak var statusLabel: UILabel!
     
     let buttonHeight = 35
     let buttonWidth = UIScreen.main.bounds.size.width - 100
     
+    let lightWhite = UIColor(red: 236 / 255, green: 239 / 255, blue: 244 / 255, alpha: 1)
     let darkWhite = UIColor(red: 216 / 255, green: 222 / 255, blue: 233 / 255, alpha: 1)
     let darkestBlue = UIColor(red: 46 / 255, green: 52 / 255, blue: 64 / 255, alpha: 1)
+    let red = UIColor(red: 191 / 255, green: 97 / 255, blue: 106 / 255, alpha: 1)
     
     let apiBaseURL = "https://api.publicapis.org"
     var categories: [String] = Array()
@@ -52,27 +55,45 @@ class SearchViewController: UIViewController {
     
     var hasCategoriesLoaded = false
     var hasDataLoaded = false
+    var hasError = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.statusLabel.isHidden = true
         performFetch(query: "categories", searchType: SearchType.categories)
     }
     
     func waitForLoad() {
-        var counter = 60.0
+        self.statusLabel.text = "Searching..."
+        self.statusLabel.textColor = self.lightWhite
+        self.statusLabel.isHidden = false
+        
+        var counter = 10.0
         var _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) {
             timer in
             counter -= 0.1
             
-            if (self.hasDataLoaded) {
+            if (self.hasError) {
                 timer.invalidate()
-                self.loadResultsViewController()
+                self.statusLabel.text = "No Results..."
+                self.statusLabel.textColor = self.red
+                self.statusLabel.isHidden = false
+                self.hasError = false
+                return
             }
             
-            if (counter == 0) {
+            else if (counter == 0) {
                 timer.invalidate()
-                print("ERROR")
+                self.statusLabel.text = "ERROR: Timed Out"
+                self.statusLabel.textColor = self.red
+                self.statusLabel.isHidden = false
+            }
+            
+            else if (self.hasDataLoaded) {
+                self.statusLabel.isHidden = true
+                timer.invalidate()
+                self.loadResultsViewController()
             }
         }
     }
@@ -130,21 +151,27 @@ class SearchViewController: UIViewController {
     @IBAction func searchButtonOnClick(_ sender: Any) {
         hasDataLoaded = false
         
-        let titleParam = searchTextField.hasText ? "title=" + searchTextField.text! : ""
+        var titleParam = searchTextField.hasText ? "title=" + searchTextField.text! : ""
         var categoryParam = categoriesButton.titleLabel!.text == "Categories" ? "" : "category=" + (categoriesButton.titleLabel?.text)!
         let auth: String = authSwitch.isOn ? "a" : "null"
         
         let firstSep = titleParam.isEmpty ? "" : "&"
         let secondSep = categoryParam.isEmpty ? "" : "&"
         
-        if (categoryParam.contains(" ")) {
-            categoryParam = categoryParam.components(separatedBy: " ").first!
-        }
+        titleParam = sanitiseInput(param: titleParam)
+        categoryParam = sanitiseInput(param: categoryParam)
         
         let query = "entries?\(titleParam)\(firstSep)\(categoryParam)\(secondSep)auth=\(auth)"
         
         performFetch(query: query, searchType: SearchType.entries)
         waitForLoad()
+    }
+    
+    func sanitiseInput(param: String) -> String {
+        if (param.contains(" ")) {
+             return param.components(separatedBy: " ").first!
+        }
+        return param
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -156,7 +183,9 @@ class SearchViewController: UIViewController {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error != nil {
-                    print("ERROR")
+                    self.statusLabel.text = "Connection Error"
+                    self.statusLabel.textColor = self.red
+                    self.statusLabel.isHidden = false
                     return
                 }
                 if let safeData = data {
@@ -172,7 +201,8 @@ class SearchViewController: UIViewController {
                             self.hasDataLoaded = true
                         }
                     } catch {
-                        print("ERROR in parseJSON()")
+                        print("Error in ParseJSON")
+                        self.hasError = true
                     }
                 }
             }
