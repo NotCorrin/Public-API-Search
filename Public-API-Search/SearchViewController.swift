@@ -95,16 +95,20 @@ class SearchViewController: UIViewController {
         if (!hasCategoriesLoaded) {
             categoriesScrollView.backgroundColor = darkWhite
             
-            for index in 0..<self.categories.count {
+            for index in 0..<self.categories.count + 1 {
                 let frame1 = CGRect(x: 0, y: 0 + (index * buttonHeight), width: Int(buttonWidth), height: buttonHeight )
                 let button = UIButton(frame: frame1)
-                button.setTitle("\(categories[index])", for: .normal)
+                if (index == 0) {
+                    button.setTitle("Categories", for: .normal)
+                } else {
+                    button.setTitle("\(categories[index - 1])", for: .normal)
+                }
                 button.setTitleColor(darkestBlue, for: .normal)
                 button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
                 
                 self.categoriesScrollView.addSubview(button)
             }
-            self.categoriesScrollView.contentSize.height = CGFloat(buttonHeight * categories.count)
+            self.categoriesScrollView.contentSize.height = CGFloat(buttonHeight * (categories.count + 1))
             hasCategoriesLoaded = true
         }
         toggleDropdown()
