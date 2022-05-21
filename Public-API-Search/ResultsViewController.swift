@@ -22,6 +22,7 @@ class publicApis {
 }
 
 class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+    @IBOutlet weak var clippedView: UIView!
     
     var entries: [Entries] = Array()
     
@@ -59,7 +60,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self;
         tableView.frame = view.bounds;
         tableView.backgroundView = UIImageView(image: UIImage(named: "results.png"));
-        view.addSubview(tableView);
+        clippedView.addSubview(tableView);
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
