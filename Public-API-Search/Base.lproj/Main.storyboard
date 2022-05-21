@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NYE-s2-LU1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NYE-s2-LU1">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -49,6 +49,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Random">
                                                     <color key="baseForegroundColor" red="0.1843137443" green="0.20392158630000001" blue="0.2470588088" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="baseBackgroundColor" red="0.92941176889999999" green="0.93725490570000003" blue="0.9529411793" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </buttonConfiguration>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lx0-Hy-Sxp">
@@ -57,6 +58,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Search">
                                                     <color key="baseForegroundColor" red="0.1843137443" green="0.20392158630000001" blue="0.2470588088" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="baseBackgroundColor" red="0.92941176889999999" green="0.93725490570000003" blue="0.9529411793" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </buttonConfiguration>
                                             </button>
                                         </subviews>
@@ -149,7 +151,7 @@
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="116.51785714285714"/>
         </scene>
-        <!--Results View Controller-->
+        <!--Results-->
         <scene sceneID="DL0-6E-c5D">
             <objects>
                 <viewController storyboardIdentifier="ResultsViewController" id="ecp-VC-PsS" customClass="ResultsViewController" customModule="Public_API_Search" customModuleProvider="target" sceneMemberID="viewController">
@@ -177,7 +179,7 @@
                             <constraint firstItem="Pmv-7f-nnS" firstAttribute="top" secondItem="fFQ-ak-MJQ" secondAttribute="top" id="ud5-Fo-Gn4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="5xm-z5-tKe"/>
+                    <navigationItem key="navigationItem" title="Results" id="5xm-z5-tKe"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rhT-Lo-Kip" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -206,6 +208,7 @@
             <point key="canvasLocation" x="131.8840579710145" y="116.51785714285714"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.92941176889999999" green="0.93725490570000003" blue="0.9529411793" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
     <resources>
         <image name="results" width="552" height="1194.6666259765625"/>
         <image name="search" width="552" height="1194.6666259765625"/>
