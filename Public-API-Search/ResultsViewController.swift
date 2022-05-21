@@ -21,29 +21,29 @@ class publicApis {
     }
 }
 
-class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    //@IBOutlet weak var SearchResultsTableView: UITableView!
+class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
-    
+
     private var publicApisList = [publicApis]()
+    lazy var searchBar:UISearchBar = UISearchBar()
     
     override func viewDidLoad() {
         super.viewDidLoad();
         publicApisList = [
-            publicApis(title: "Title: Liam", details: ["Auth: ", "Category: ", "Link: "].compactMap({ return "\($0)" })),
+            publicApis(title: "Title: Liam", details: ["Auth:", "Category:", "Link:"].compactMap({ return "\($0)" })),
             publicApis(title: "Christian", details: ["Auth: ", "Category: ", "Link: "].compactMap({ return "\($0)" }))
         ]
-        view.addSubview(tableView);
+                
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.frame = view.bounds;
         tableView.backgroundView = UIImageView(image: UIImage(named: "results.png"))
+        view.addSubview(tableView);
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
