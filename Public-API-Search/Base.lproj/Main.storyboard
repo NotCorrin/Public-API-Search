@@ -182,24 +182,28 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="results" translatesAutoresizingMaskIntoConstraints="NO" id="Pmv-7f-nnS">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search results..." translatesAutoresizingMaskIntoConstraints="NO" id="nTP-tH-909">
-                                <rect key="frame" x="20" y="102" width="374" height="51"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="barTintColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
+                            <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mjX-8E-xeo">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PAy-C3-82f"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="mjX-8E-xeo" firstAttribute="leading" secondItem="PAy-C3-82f" secondAttribute="leading" id="1to-96-AFO"/>
                             <constraint firstItem="Pmv-7f-nnS" firstAttribute="trailing" secondItem="PAy-C3-82f" secondAttribute="trailing" id="5BT-RY-r9b"/>
+                            <constraint firstItem="mjX-8E-xeo" firstAttribute="top" secondItem="PAy-C3-82f" secondAttribute="top" id="Kga-xZ-DPa"/>
                             <constraint firstAttribute="bottom" secondItem="Pmv-7f-nnS" secondAttribute="bottom" id="ciS-Yv-RlE"/>
                             <constraint firstItem="Pmv-7f-nnS" firstAttribute="leading" secondItem="PAy-C3-82f" secondAttribute="leading" id="d3n-Hc-9d1"/>
+                            <constraint firstItem="mjX-8E-xeo" firstAttribute="trailing" secondItem="PAy-C3-82f" secondAttribute="trailing" id="n76-Sd-VTy"/>
                             <constraint firstItem="Pmv-7f-nnS" firstAttribute="top" secondItem="fFQ-ak-MJQ" secondAttribute="top" id="ud5-Fo-Gn4"/>
+                            <constraint firstAttribute="bottom" secondItem="mjX-8E-xeo" secondAttribute="bottom" id="wAi-ev-dG8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Results" id="5xm-z5-tKe"/>
+                    <connections>
+                        <outlet property="clippedView" destination="mjX-8E-xeo" id="O9N-BE-k7f"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rhT-Lo-Kip" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
